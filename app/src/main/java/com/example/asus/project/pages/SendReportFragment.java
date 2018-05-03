@@ -94,6 +94,7 @@ public class SendReportFragment extends Fragment {
                 ((MainActivity) getActivity()).changePage(fragment);
             }
         });
+       // spinner_schname.setPrompt("กรุณาเลือกโครงการ");
         getSchName();
         return view;
     }
