@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.asus.project.pages.SendReportFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--<TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="15dp"
+        android:text="ใบคำร้อง/ให้คำปรึกษา"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />-->
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ECF0F1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="11dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="โครงการ"
+            android:textSize="16dp"/>
+        <EditText
+            android:id="@+id/project"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="เลือกโครงการ"
+            android:padding="16dp"
+            android:background="#ffffff"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ระบบ"
+            android:textSize="16dp"/>
+        <EditText
+            android:id="@+id/system"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="เลือกระบบ"
+            android:padding="16dp"
+            android:background="#ffffff"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ชื่อเรื่อง"
+            android:textSize="16dp"/>
+        <EditText
+            android:id="@+id/problem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="กรุณากรอกปัญหาที่พบ"
+            android:padding="16dp"
+            android:background="#ffffff"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="รายละเอียด"
+            android:textSize="16dp"/>
+        <EditText
+            android:id="@+id/detail"
+            android:layout_width="match_parent"
+            android:layout_height="167dp"
+            android:layout_margin="5dp"
+            android:background="#ffffff"
+            android:ems="10"
+            android:hint="กรุณากรอกรายละเอียดของปัญหา"
+            android:inputType="textMultiLine"
+            android:padding="16dp" />
+
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="@string/next"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+</RelativeLayout>

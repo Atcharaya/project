@@ -1,0 +1,136 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.asus.project.pages.SendReport2Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <!--<TextView
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="15dp"
+        android:text="ใบคำร้อง/ให้คำปรึกษา"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />-->
+
+    <LinearLayout
+        android:id="@+id/body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ECF0F1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="11dp">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ชื่อผู้พบปัญหา"
+            android:textSize="16dp"/>
+        <EditText
+            android:id="@+id/problem1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:padding="16dp"
+            android:background="#ffffff"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ประเภท"
+            android:textSize="16dp"/>
+        <EditText
+            android:id="@+id/type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="เลือกประเภท"
+            android:padding="16dp"
+            android:background="#ffffff"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ระดับความสำคัญ"
+            android:textSize="16dp"/>
+        <EditText
+            android:id="@+id/priority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="เลือกระดับความสำคัญ"
+            android:padding="16dp"
+            android:background="#ffffff"
+            android:layout_margin="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="อัพโหลดไฟล์"
+            android:textSize="16dp"/>
+
+        <EditText
+            android:id="@+id/upload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="#ffffff"
+            android:ems="10"
+
+            android:inputType="textMultiLine"
+            android:padding="16dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ช่องทางการติดต่อ"
+            android:textSize="16dp"/>
+        <EditText
+            android:id="@+id/contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:padding="16dp"
+            android:background="#ffffff"
+            android:layout_margin="5dp"/>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/prev_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="189dp"
+        android:layout_marginRight="189dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="@string/prev"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="197dp"
+        android:layout_marginStart="197dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="3dp"
+        android:text="@string/next"
+        android:textColor="#ffffff"
+        android:textSize="15sp" />
+
+</RelativeLayout>
