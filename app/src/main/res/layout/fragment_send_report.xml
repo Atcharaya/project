@@ -20,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ECF0F1"
-        android:gravity="center"
         android:orientation="vertical"
         android:padding="11dp">
 
@@ -30,14 +29,12 @@
             android:layout_height="wrap_content"
             android:text="โครงการ"
             android:textSize="16dp"/>
-        <EditText
-            android:id="@+id/project"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="เลือกโครงการ"
-            android:padding="16dp"
-            android:background="#ffffff"
-            android:layout_margin="5dp"/>
+       <Spinner
+           android:id="@+id/Sch_Name"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content">
+
+       </Spinner>
 
         <TextView
             android:layout_width="match_parent"

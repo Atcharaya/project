@@ -5,13 +5,25 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.telecom.Call;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.example.asus.project.MainActivity;
 import com.example.asus.project.R;
+import com.example.asus.project.adapter.SchAdapter;
+import com.example.asus.project.model.ProjectDao;
+import com.example.asus.project.service.HttpManager;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,10 +43,12 @@ public class SendReportFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+
     private OnFragmentInteractionListener mListener;
 
     Button nextButton;
-
+    private List<ProjectDao> projectDaos;
+    Spinner spinner_schname;
     public SendReportFragment() {
         // Required empty public constructor
     }
@@ -72,6 +86,7 @@ public class SendReportFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_send_report, container, false);
         nextButton = view.findViewById(R.id.next_button);
+        spinner_schname = view.findViewById(R.id.Sch_Name);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,7 +94,39 @@ public class SendReportFragment extends Fragment {
                 ((MainActivity) getActivity()).changePage(fragment);
             }
         });
+        getSchName();
         return view;
+    }
+
+    private void getSchName() {
+        retrofit2.Call<List<ProjectDao>> call = HttpManager.getInstance().getService().get_sch();
+        call.enqueue(new Callback<List<ProjectDao>>() {
+            @Override
+            public void onResponse(retrofit2.Call<List<ProjectDao>> call, Response<List<ProjectDao>> response) {
+                if(response.isSuccessful()){
+                    Log.d("sch_name","if :: => "+response.message());
+                    List<ProjectDao> res = response.body();
+                    projectDaos = res;
+                    if(res.size() > 0 ){
+                        SchAdapter adapter = new SchAdapter(getActivity(), res);
+                        spinner_schname.setAdapter(adapter);
+                    }
+
+                }else{
+                    try{
+                        Log.d("sch_name","else :: => "+response.errorBody().string());
+                    }catch (IOException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<List<ProjectDao>> call, Throwable t) {
+                    Log.d("onFailure","else "+t);
+            }
+        });
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
