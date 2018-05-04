@@ -33,7 +33,6 @@
            android:id="@+id/Sch_Name"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content">
-
        </Spinner>
 
         <TextView
@@ -41,14 +40,11 @@
             android:layout_height="wrap_content"
             android:text="ระบบ"
             android:textSize="16dp"/>
-        <EditText
-            android:id="@+id/system"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="เลือกระบบ"
-            android:padding="16dp"
-            android:background="#ffffff"
-            android:layout_margin="5dp"/>
+        <Spinner
+            android:id="@+id/Sch_System"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        </Spinner>
 
         <TextView
             android:layout_width="match_parent"
@@ -59,7 +55,6 @@
             android:id="@+id/problem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="กรุณากรอกปัญหาที่พบ"
             android:padding="16dp"
             android:background="#ffffff"
             android:layout_margin="5dp"/>
@@ -76,7 +71,6 @@
             android:layout_margin="5dp"
             android:background="#ffffff"
             android:ems="10"
-            android:hint="กรุณากรอกรายละเอียดของปัญหา"
             android:inputType="textMultiLine"
             android:padding="16dp" />
 

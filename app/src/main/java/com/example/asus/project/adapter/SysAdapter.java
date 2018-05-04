@@ -8,21 +8,21 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.asus.project.R;
-import com.example.asus.project.model.ProjectDao;
+import com.example.asus.project.model.SystemDao;
 
 import java.util.List;
 
 /**
- * Created by computer on 3/5/2561.
+ * Created by ASUS on 4/5/2561.
  */
 
-public class SchAdapter extends BaseAdapter {
+public class SysAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
-    private List<ProjectDao> mData;
+    private List<SystemDao> mData;
 
-    public SchAdapter(Context context, List<ProjectDao> mData) {
-        this.mData = mData;
+    public SysAdapter(Context context, List<SystemDao> mData) {
         this.mInflater = LayoutInflater.from(context);
+        this.mData = mData;
     }
 
     @Override
@@ -51,12 +51,13 @@ public class SchAdapter extends BaseAdapter {
         }else{
             holder = (SchAdapter.ViewHolder)convertView.getTag();
         }
-        holder.name.setText(mData.get(position).getSchName());
+        holder.name.setText(mData.get(position).getTeamName());
         convertView.setTag(holder);
         return convertView;
     }
 
-    public static class ViewHolder {
+
+    public class ViewHolder {
         TextView name;
     }
 }

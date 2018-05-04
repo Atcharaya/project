@@ -16,7 +16,9 @@ import android.widget.Spinner;
 import com.example.asus.project.MainActivity;
 import com.example.asus.project.R;
 import com.example.asus.project.adapter.SchAdapter;
+import com.example.asus.project.adapter.SysAdapter;
 import com.example.asus.project.model.ProjectDao;
+import com.example.asus.project.model.SystemDao;
 import com.example.asus.project.service.HttpManager;
 
 import java.io.IOException;
@@ -48,7 +50,8 @@ public class SendReportFragment extends Fragment {
 
     Button nextButton;
     private List<ProjectDao> projectDaos;
-    Spinner spinner_schname;
+    private List<SystemDao> systemDaos;
+    Spinner spinner_schname,spinner_sys;
     public SendReportFragment() {
         // Required empty public constructor
     }
@@ -87,6 +90,7 @@ public class SendReportFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_send_report, container, false);
         nextButton = view.findViewById(R.id.next_button);
         spinner_schname = view.findViewById(R.id.Sch_Name);
+        spinner_sys = view.findViewById(R.id.Sch_System);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +99,37 @@ public class SendReportFragment extends Fragment {
             }
         });
         getSchName();
+        getSystem();
         return view;
+    }
+
+    private void getSystem() {
+       retrofit2.Call<List<SystemDao>> call = HttpManager.getInstance().getService().get_team();
+       call.enqueue(new Callback<List<SystemDao>>() {
+           @Override
+           public void onResponse(retrofit2.Call<List<SystemDao>> call, Response<List<SystemDao>> response) {
+               if(response.isSuccessful()){
+                   Log.d("sch_name","if :: => "+response.message());
+                List<SystemDao> res = response.body();
+                systemDaos = res;
+                if (res.size() > 0){
+                    SysAdapter adapter = new SysAdapter(getActivity(), res);
+                    spinner_sys.setAdapter(adapter);
+                }
+               }else {
+                   try {
+                       Log.d("TeamName","else :: => "+response.errorBody().string());
+                   }catch (IOException e){
+                       e.printStackTrace();
+                   }
+               }
+           }
+
+           @Override
+           public void onFailure(retrofit2.Call<List<SystemDao>> call, Throwable t) {
+               Log.d("onFailure_sys","else "+t);
+           }
+       });
     }
 
     private void getSchName() {
@@ -128,6 +162,8 @@ public class SendReportFragment extends Fragment {
         });
 
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
