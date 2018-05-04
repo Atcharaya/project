@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.asus.project.pages.SaveReportMainFragment;
 import com.example.asus.project.pages.SendReportFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -96,7 +97,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_status) {
 
         } else if (id == R.id.nav_save) {
-
+            fragment = new SaveReportMainFragment();
+            setTitle("บันทึกผลการแจ้งคำร้องของผู้ใช้");
         } else if (id == R.id.nav_logout) {
 
         }
