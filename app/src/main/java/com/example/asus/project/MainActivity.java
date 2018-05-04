@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.asus.project.pages.FristFragment;
 import com.example.asus.project.pages.SendReportFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -87,6 +88,8 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = new Fragment();
 
         if (id == R.id.nav_main) {
+            fragment = new FristFragment();
+            setTitle("fristpage");
             // Handle the camera action
         } else if (id == R.id.nav_track) {
 
