@@ -4,11 +4,13 @@ import com.example.asus.project.model.CatagoryDao;
 import com.example.asus.project.model.ContactDao;
 import com.example.asus.project.model.LevelDao;
 import com.example.asus.project.model.ProjectDao;
+import com.example.asus.project.model.SaveReportDao;
 import com.example.asus.project.model.SystemDao;
 
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.http.GET;
 
 /**
@@ -30,4 +32,7 @@ public interface ApiService {
 
     @GET("get_ctt")
     Call<List<ContactDao>> get_ctt();
+
+    @GET("getSaveReportQuest")
+    Call<List<SaveReportDao>> getSaveReportQuest();
 }
