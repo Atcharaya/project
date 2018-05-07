@@ -30,16 +30,12 @@ public class SaveReportDao {
         return rqSubject;
     }
 
-    public void setRqSubject(String rqSubject) {
-        this.rqSubject = rqSubject;
-    }
+    public void setRqSubject(String rqSubject) { this.rqSubject = rqSubject; }
 
-    public String getSysName() {
-        return sysName;
-    }
+    public String getSysName() { return sysName; }
 
-    public void setRqDetail(String rqDetail) {
-        this.sysName = rqDetail;
+    public void setSysName(String sysName) {
+        this.sysName = sysName;
     }
 
     @SerializedName("rq_date")

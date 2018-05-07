@@ -5,15 +5,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#acacac">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/card_item"
-            android:background="#acacac">
+            android:id="@+id/card_item">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -59,8 +57,6 @@
                     android:text="แก้ไข"
                     android:textColor="#ffffff"
                     android:textSize="20dp" />
-
-
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>

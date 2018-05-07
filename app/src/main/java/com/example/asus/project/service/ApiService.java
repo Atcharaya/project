@@ -35,4 +35,19 @@ public interface ApiService {
 
     @GET("getSaveReportQuest")
     Call<List<SaveReportDao>> getSaveReportQuest();
+
+    @GET("getSaveReportAnalysis")
+    Call<List<SaveReportDao>> getSaveReportAnalysis();
+
+    @GET("getSaveReportEdit")
+    Call<List<SaveReportDao>> getSaveReportEdit();
+
+    @GET("getSaveReportTest")
+    Call<List<SaveReportDao>> getSaveReportTest();
+
+    @GET("getSaveReportReport")
+    Call<List<SaveReportDao>> getSaveReportReport();
+
+    @GET("getSaveReportDone")
+    Call<List<SaveReportDao>> getSaveReportDone();
 }
