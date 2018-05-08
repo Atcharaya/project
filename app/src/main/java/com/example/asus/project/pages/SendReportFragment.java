@@ -1,27 +1,27 @@
 package com.example.asus.project.pages;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.telecom.Call;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.asus.project.MainActivity;
 import com.example.asus.project.R;
 import com.example.asus.project.adapter.SchAdapter;
-import com.example.asus.project.adapter.SysAdapter;
+import com.example.asus.project.adapter.SysSiteAdapter;
 import com.example.asus.project.model.ProjectDao;
-import com.example.asus.project.model.SystemDao;
+import com.example.asus.project.model.SysDao;
 import com.example.asus.project.service.HttpManager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Callback;
@@ -39,19 +39,20 @@ public class SendReportFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ArrayList<String> param;
 
 
     private OnFragmentInteractionListener mListener;
 
     Button nextButton;
     private List<ProjectDao> projectDaos;
-    private List<SystemDao> systemDaos;
-    Spinner spinner_schname,spinner_sys;
+    private List<SysDao> systemDaos;
+    Spinner spinner_schname, spinner_sys;
+    EditText problem, detail;
+    String Schid, sysid, topic, content;
+
     public SendReportFragment() {
         // Required empty public constructor
     }
@@ -61,15 +62,13 @@ public class SendReportFragment extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment SendReportFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SendReportFragment newInstance(String param1, String param2) {
+    public static SendReportFragment newInstance(ArrayList<String> param1) {
         SendReportFragment fragment = new SendReportFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putStringArrayList(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -78,8 +77,7 @@ public class SendReportFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            param = getArguments().getStringArrayList(ARG_PARAM1);
         }
     }
 
@@ -91,46 +89,37 @@ public class SendReportFragment extends Fragment {
         nextButton = view.findViewById(R.id.next_button);
         spinner_schname = view.findViewById(R.id.Sch_Name);
         spinner_sys = view.findViewById(R.id.Sch_System);
+        problem = view.findViewById(R.id.problem);
+        detail = view.findViewById(R.id.detail);
+
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new SendReport2Fragment();
+                ArrayList<String> data = new ArrayList<String>();
+                if (param != null) {
+                    data = param;
+                } else {
+                    data.add(0, Schid);
+                    data.add(1, sysid);
+                    data.add(2, problem.getText().toString());
+                    data.add(3, detail.getText().toString());
+                }
+                data.set(0, Schid);
+                data.set(1, sysid);
+                data.set(2, problem.getText().toString());
+                data.set(3, detail.getText().toString());
+                Fragment fragment = new SendReport2Fragment().newInstance(data);
                 ((MainActivity) getActivity()).changePage(fragment);
             }
         });
-       // spinner_schname.setPrompt("กรุณาเลือกโครงการ");
+        // spinner_schname.setPrompt("กรุณาเลือกโครงการ");
         getSchName();
-        getSystem();
+
+        if (param != null) {
+            problem.setText(param.get(2));
+            detail.setText(param.get(3));
+        }
         return view;
-    }
-
-    private void getSystem() {
-       retrofit2.Call<List<SystemDao>> call = HttpManager.getInstance().getService().get_team();
-       call.enqueue(new Callback<List<SystemDao>>() {
-           @Override
-           public void onResponse(retrofit2.Call<List<SystemDao>> call, Response<List<SystemDao>> response) {
-               if(response.isSuccessful()){
-                   Log.d("sch_name","if :: => "+response.message());
-                List<SystemDao> res = response.body();
-                systemDaos = res;
-                if (res.size() > 0){
-                    SysAdapter adapter = new SysAdapter(getActivity(), res);
-                    spinner_sys.setAdapter(adapter);
-                }
-               }else {
-                   try {
-                       Log.d("TeamName","else :: => "+response.errorBody().string());
-                   }catch (IOException e){
-                       e.printStackTrace();
-                   }
-               }
-           }
-
-           @Override
-           public void onFailure(retrofit2.Call<List<SystemDao>> call, Throwable t) {
-               Log.d("onFailure_sys","else "+t);
-           }
-       });
     }
 
     private void getSchName() {
@@ -138,19 +127,46 @@ public class SendReportFragment extends Fragment {
         call.enqueue(new Callback<List<ProjectDao>>() {
             @Override
             public void onResponse(retrofit2.Call<List<ProjectDao>> call, Response<List<ProjectDao>> response) {
-                if(response.isSuccessful()){
-                    Log.d("sch_name","if :: => "+response.message());
+                if (response.isSuccessful()) {
+                    Log.d("sch_name", "if :: => " + response.message());
                     List<ProjectDao> res = response.body();
                     projectDaos = res;
-                    if(res.size() > 0 ){
-                        SchAdapter adapter = new SchAdapter(getActivity(), res);
+                    if (projectDaos.size() > 0) {
+                        SchAdapter adapter = new SchAdapter(getActivity(), projectDaos);
                         spinner_schname.setAdapter(adapter);
+                        if (param != null) {
+                            if (param.size() > 0) {
+                                int ps = 0;
+                                for (ProjectDao rs : projectDaos) {
+                                    if (rs.getSchId().equals(param.get(0))) {
+                                        spinner_schname.setSelection(ps);
+                                        break;
+                                    }
+                                    ps++;
+                                }
+                            }
+                        }
+                        spinner_schname.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                Log.d("getSchName", "onItemSelected: " + projectDaos.get(i).getSchId());
+                                //sendschname(projectDaos.get(i).getSchId());
+                                Schid = projectDaos.get(i).getSchId();
+                                getSystem();
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                        getSystem();
                     }
 
-                }else{
-                    try{
-                        Log.d("sch_name","else :: => "+response.errorBody().string());
-                    }catch (IOException e){
+                } else {
+                    try {
+                        Log.d("sch_name", "else :: => " + response.errorBody().string());
+                    } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -158,11 +174,62 @@ public class SendReportFragment extends Fragment {
 
             @Override
             public void onFailure(retrofit2.Call<List<ProjectDao>> call, Throwable t) {
-                    Log.d("onFailure","else "+t);
+                Log.d("onFailure Schname", "else " + t);
             }
         });
 
     }
+
+    private void getSystem() {
+        String id = projectDaos.get(spinner_schname.getSelectedItemPosition()).getSchId();
+        retrofit2.Call<List<SysDao>> call = HttpManager.getInstance().getService().get_sys(id);
+        call.enqueue(new Callback<List<SysDao>>() {
+            @Override
+            public void onResponse(retrofit2.Call<List<SysDao>> call, Response<List<SysDao>> response) {
+                if (response.isSuccessful()){
+                    Log.d("sendschname", "onResponse: "+response.body().size());
+                    List<SysDao> res = response.body();
+                    systemDaos = res;
+                    if (systemDaos.size() > 0){
+                        SysSiteAdapter adapter = new SysSiteAdapter(getActivity(),systemDaos);
+                        spinner_sys.setAdapter(adapter);
+                        if (param != null) {
+                            if (param.size() > 0) {
+                                int ps = 0;
+                                for (SysDao rs : systemDaos) {
+                                    if (rs.getSysId().equals(param.get(1))) {
+                                        spinner_sys.setSelection(ps);
+                                        break;
+                                    }
+                                    ps++;
+                                }
+                            }
+                        }
+                        spinner_sys.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                                sysid = systemDaos.get(i).getSysId();
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> adapterView) {
+
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<List<SysDao>> call, Throwable t) {
+                Log.d("onFailure System", "else " + t);
+            }
+        });
+    }
+
+
+
+
 
 
 
