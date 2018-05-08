@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.asus.project.MainActivity;
 import com.example.asus.project.R;
@@ -26,6 +27,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -50,14 +52,14 @@ public class SendReport3Fragment extends Fragment {
     private ArrayList<String> param;
 
     private OnFragmentInteractionListener mListener;
-    int day,month,year;
+    int day, month, year;
     java.util.Calendar calendar;
-    EditText ed,problem2;
+    EditText ed, problem2;
     String date, TeamId;
 
-    static  final int DILOG_ID = 0;
+    static final int DILOG_ID = 0;
     List<SystemDao> systemDaos;
-    Button prevButton,submitButton;
+    Button prevButton, submitButton;
     Spinner spinner_team;
 
     public SendReport3Fragment() {
@@ -81,7 +83,6 @@ public class SendReport3Fragment extends Fragment {
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,9 +90,6 @@ public class SendReport3Fragment extends Fragment {
             param = getArguments().getStringArrayList(ARG_PARAM1);
         }
     }
-
-
-
 
 
     @Override
@@ -108,7 +106,7 @@ public class SendReport3Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ArrayList<String> data = new ArrayList<String>();
-                if (param != null){
+                if (param != null) {
                     data = param;
                     if (param.size() == 8) {
                         data.add(8, problem2.getText().toString());
@@ -130,7 +128,7 @@ public class SendReport3Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ArrayList<String> data = new ArrayList<String>();
-                if (param != null){
+                if (param != null) {
                     data = param;
                     if (param.size() == 8) {
                         data.add(8, problem2.getText().toString());
@@ -151,28 +149,37 @@ public class SendReport3Fragment extends Fragment {
         day = calendar.get(java.util.Calendar.DAY_OF_MONTH);
         month = calendar.get(java.util.Calendar.MONTH);
         year = calendar.get(java.util.Calendar.YEAR);
-        month = month+1;
-        if (param != null){
-            if (param.size()>8){
+//        month = month + 1;
+        if (param != null) {
+            if (param.size() > 8) {
                 problem2.setText(param.get(8));
                 String[] temp = param.get(9).split("-");
-                ed.setText(temp[2]+"/"+temp[1]+"/"+temp[0]);
+                ed.setText(temp[2] + "/" + temp[1] + "/" + temp[0]);
+                date = temp[0] + "-" + temp[1] + "-" + temp[2];
+                year =   Integer.parseInt(temp[0]);
+                month =   Integer.parseInt(temp[1])-1;
+                day =   Integer.parseInt(temp[2]);
             }
-        }else{
-            ed.setText(day+"/"+month+"/"+year);
+        } else {
+            ed.setText(dateFormat(day) + "/" + dateFormat(month + 1) + "/" + year);
+            date = year + "-" + dateFormat(month + 1) + "-" + dateFormat(day);
         }
-        date = year+"-"+month+"-"+day;
         ed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
                     @Override
-                    public void onDateSet(DatePicker view, int year, int monthofYear, int dayofMonth) {
-                        monthofYear = monthofYear+1;
-                        ed.setText(dayofMonth+"/"+month+"/"+year);
-                        date = year+"-"+month+"-"+dayofMonth;
+                    public void onDateSet(DatePicker view, int years, int monthofYear, int dayofMonth) {
+                        year = years;
+                        month = monthofYear;
+                        day = dayofMonth;
+                        monthofYear = monthofYear + 1;
+//                        Log.d("gg", "onDateSet: " + dateFormat(monthofYear));
+//                        Log.d("gg", "onDateSet: " + dateFormat(dayofMonth));
+                        ed.setText(dateFormat(dayofMonth) + "/" + dateFormat(monthofYear) + "/" + year);
+                        date = years + "-" + dateFormat(monthofYear) + "-" + dateFormat(dayofMonth);
                     }
-                },year,month,day);
+                }, year, month, day);
                 datePickerDialog.show();
             }
         });
@@ -183,8 +190,27 @@ public class SendReport3Fragment extends Fragment {
     }
 
     private void save(ArrayList<String> data) {
-        data.get(0);
-       // retrofit2.Call<Success> call = HttpManager.getInstance().getService().insert(data.get(0),data.get(1),data.get(2),data.get(3),data.get(4),data.get(5),data.get(6),data.get(7),data.get(8),data.get(9),data.get(10));
+        Log.d("Senddata", "rq_scheme = " + data.get(0) + " rq_subject = " + data.get(2) + " || rq_sys_id = " + data.get(1) + " || rq_detail =  " + data.get(3)
+                + " rq_ct_id = " + data.get(5) + " rq_lv_id =  " + data.get(6) + " rq_name_reply =  " + data.get(8) + " rq_name =  " + data.get(8) + " rq_team_id =  " + data.get(10) + " rq_date = " + data.get(9));
+        retrofit2.Call<Success> call = HttpManager.getInstance().getService().insert(data.get(0), data.get(2), data.get(1), data.get(3), data.get(5), data.get(6), data.get(8), data.get(8), data.get(10), data.get(9));
+        call.enqueue(new Callback<Success>() {
+            @Override
+            public void onResponse(Call<Success> call, Response<Success> response) {
+                if (response.isSuccessful()) {
+                    Log.d("insert", "onResponse: " + response.body().getStr());
+//                    Toast.makeText(getActivity(),response.body().getStr(),Toast.LENGTH_LONG).show();
+                } else {
+                    Log.d("insert", "onResponse: " + response.errorBody());
+//                    Toast.makeText(getActivity(),"บันทึกข้อมูลไม่สำเร็จ",Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Success> call, Throwable t) {
+                Log.d("insert", "onFailure: " + t);
+                // Toast.makeText(getActivity(), "บันทึกข้อมูลไม่สำเร็จ", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void getTeam() {
@@ -196,7 +222,7 @@ public class SendReport3Fragment extends Fragment {
                     Log.d("sch_name", "if :: => " + response.message());
                     List<SystemDao> res = response.body();
                     systemDaos = res;
-                    Log.d("sizeteam","=> "+systemDaos.size());
+                    Log.d("sizeteam", "=> " + systemDaos.size());
                     if (systemDaos.size() >= 4) {
 
                         SysAdapter adapter = new SysAdapter(getActivity(), systemDaos);
@@ -241,6 +267,16 @@ public class SendReport3Fragment extends Fragment {
         });
     }
 
+    public String dateFormat(int num) {
+        String str = "";
+        if (num < 10) {
+            str = "0" + num;
+        } else {
+            str = "" + num;
+        }
+        return str;
+    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -265,10 +301,6 @@ public class SendReport3Fragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-
-
-
 
 
     /**
