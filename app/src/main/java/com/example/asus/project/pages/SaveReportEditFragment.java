@@ -4,11 +4,22 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.asus.project.R;
+import com.example.asus.project.adapter.SaveReportAdapter;
+import com.example.asus.project.model.SaveReportDao;
+import com.example.asus.project.service.HttpManager;
+
+import java.util.List;
+
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +37,7 @@ public class SaveReportEditFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private String mParam1;
-    private String mParam2;
+    RecyclerView recyclerView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -47,7 +58,6 @@ public class SaveReportEditFragment extends Fragment {
         SaveReportEditFragment fragment = new SaveReportEditFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,14 +67,18 @@ public class SaveReportEditFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_save_report_edit, container, false);
+        View view = inflater.inflate(R.layout.fragment_save_report_edit, container, false);
+        recyclerView = view.findViewById(R.id.rv_save_edit);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(manager);
+        getSaveList();
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -88,6 +102,29 @@ public class SaveReportEditFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    public void getSaveList() {
+        retrofit2.Call<List<SaveReportDao>> call = HttpManager.getInstance().getService().getSaveReportEdit();
+        call.enqueue(new Callback<List<SaveReportDao>>() {
+            @Override
+            public void onResponse(retrofit2.Call<List<SaveReportDao>> call, Response<List<SaveReportDao>> response) {
+                if (response.isSuccessful()){
+                    Log.d("service", "if :: " + response.message());
+                    List<SaveReportDao> res = response.body();
+                    Log.d("service", "if :: " + res.size());
+                    SaveReportAdapter adapter = new SaveReportAdapter(res, getActivity());
+                    recyclerView.setAdapter(adapter);
+                }else {
+                    Log.d("service", "else :: " + response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<List<SaveReportDao>> call, Throwable t) {
+                Log.d("onFailure", "else :: " + t);
+            }
+        });
     }
 
     /**
