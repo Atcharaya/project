@@ -2,6 +2,7 @@ package com.example.asus.project.service;
 
 import com.example.asus.project.model.CatagoryDao;
 import com.example.asus.project.model.ContactDao;
+import com.example.asus.project.model.EditStatusDao;
 import com.example.asus.project.model.LevelDao;
 import com.example.asus.project.model.ProjectDao;
 import com.example.asus.project.model.SaveReportDao;
@@ -12,7 +13,6 @@ import com.example.asus.project.model.SystemDao;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -44,22 +44,22 @@ public interface ApiService {
 
 
     @GET("getSaveReportQuest")
-    Call<List<SaveReportDao>> getSaveReportQuest();
+    Call<List<EditStatusDao>> getSaveReportQuest();
 
     @GET("getSaveReportAnalysis")
     Call<List<SaveReportDao>> getSaveReportAnalysis();
 
     @GET("getSaveReportEdit")
-    Call<List<SaveReportDao>> getSaveReportEdit();
+    Call<List<EditStatusDao>> getSaveReportEdit();
 
     @GET("getSaveReportTest")
-    Call<List<SaveReportDao>> getSaveReportTest();
+    Call<List<EditStatusDao>> getSaveReportTest();
 
     @GET("getSaveReportReport")
-    Call<List<SaveReportDao>> getSaveReportReport();
+    Call<List<EditStatusDao>> getSaveReportReport();
 
     @GET("getSaveReportDone")
-    Call<List<SaveReportDao>> getSaveReportDone();
+    Call<List<EditStatusDao>> getSaveReportDone();
 
     @FormUrlEncoded
     @POST("insertproject")

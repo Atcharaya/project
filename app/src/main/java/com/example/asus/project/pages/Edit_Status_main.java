@@ -21,12 +21,12 @@ import com.example.asus.project.R;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link SaveReportMainFragment.OnFragmentInteractionListener} interface
+ * {@link Edit_Status_main.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link SaveReportMainFragment#newInstance} factory method to
+ * Use the {@link Edit_Status_main#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class SaveReportMainFragment extends Fragment {
+public class Edit_Status_main extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -36,12 +36,12 @@ public class SaveReportMainFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
-
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private Edit_Status_main.SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
-    public SaveReportMainFragment() {
+    private OnFragmentInteractionListener mListener;
+
+    public Edit_Status_main() {
         // Required empty public constructor
     }
 
@@ -51,11 +51,11 @@ public class SaveReportMainFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment SaveReportMainFragment.
+     * @return A new instance of fragment Edit_Status_main.
      */
     // TODO: Rename and change types and number of parameters
-    public static SaveReportMainFragment newInstance(String param1, String param2) {
-        SaveReportMainFragment fragment = new SaveReportMainFragment();
+    public static Edit_Status_main newInstance(String param1, String param2) {
+        Edit_Status_main fragment = new Edit_Status_main();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -70,11 +70,11 @@ public class SaveReportMainFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_save_report_main, container, false);
 
@@ -82,7 +82,7 @@ public class SaveReportMainFragment extends Fragment {
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
+        mSectionsPagerAdapter = new Edit_Status_main.SectionsPagerAdapter(getFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) view.findViewById(R.id.container);
@@ -117,7 +117,8 @@ public class SaveReportMainFragment extends Fragment {
 //        if (context instanceof OnFragmentInteractionListener) {
 //            mListener = (OnFragmentInteractionListener) context;
 //        } else {
-//            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener");
 //        }
 //    }
 
@@ -142,12 +143,12 @@ public class SaveReportMainFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-
-    static class SectionsPagerAdapter extends FragmentPagerAdapter {
+    private class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
+
 
         @Override
         public Fragment getItem(int position) {
