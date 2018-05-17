@@ -2,10 +2,9 @@ package com.example.asus.project.service;
 
 import com.example.asus.project.model.CatagoryDao;
 import com.example.asus.project.model.ContactDao;
-import com.example.asus.project.model.EditStatusDao;
+import com.example.asus.project.model.EditAndSaveStatusDao;
 import com.example.asus.project.model.LevelDao;
 import com.example.asus.project.model.ProjectDao;
-import com.example.asus.project.model.SaveReportDao;
 import com.example.asus.project.model.Success;
 import com.example.asus.project.model.SysDao;
 import com.example.asus.project.model.SystemDao;
@@ -44,22 +43,22 @@ public interface ApiService {
 
 
     @GET("getSaveReportQuest")
-    Call<List<EditStatusDao>> getSaveReportQuest();
+    Call<List<EditAndSaveStatusDao>> getSaveReportQuest();
 
     @GET("getSaveReportAnalysis")
-    Call<List<SaveReportDao>> getSaveReportAnalysis();
+    Call<List<EditAndSaveStatusDao>> getSaveReportAnalysis();
 
     @GET("getSaveReportEdit")
-    Call<List<EditStatusDao>> getSaveReportEdit();
+    Call<List<EditAndSaveStatusDao>> getSaveReportEdit();
 
     @GET("getSaveReportTest")
-    Call<List<EditStatusDao>> getSaveReportTest();
+    Call<List<EditAndSaveStatusDao>> getSaveReportTest();
 
     @GET("getSaveReportReport")
-    Call<List<EditStatusDao>> getSaveReportReport();
+    Call<List<EditAndSaveStatusDao>> getSaveReportReport();
 
     @GET("getSaveReportDone")
-    Call<List<EditStatusDao>> getSaveReportDone();
+    Call<List<EditAndSaveStatusDao>> getSaveReportDone();
 
     @FormUrlEncoded
     @POST("insertproject")

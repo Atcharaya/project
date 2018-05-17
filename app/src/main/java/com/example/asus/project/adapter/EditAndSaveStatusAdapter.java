@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.asus.project.R;
-import com.example.asus.project.model.EditStatusDao;
+import com.example.asus.project.model.EditAndSaveStatusDao;
 
 import java.util.List;
 
@@ -18,11 +18,11 @@ import java.util.List;
  * Created by PREDATOR on 12/5/2561.
  */
 
-public class EditStatusAdapter extends RecyclerView.Adapter<EditStatusAdapter.EditStatusViewHolder>{
-    private List<EditStatusDao> editStatusDaos;
+public class EditAndSaveStatusAdapter extends RecyclerView.Adapter<EditAndSaveStatusAdapter.EditStatusViewHolder>{
+    private List<EditAndSaveStatusDao> editAndSaveStatusDaos;
     private Context mContext;
-    public EditStatusAdapter(List<EditStatusDao> editStatusDaos, Context mContext) {
-        this.editStatusDaos = editStatusDaos;
+    public EditAndSaveStatusAdapter(List<EditAndSaveStatusDao> editAndSaveStatusDaos, Context mContext) {
+        this.editAndSaveStatusDaos = editAndSaveStatusDaos;
         this.mContext = mContext;
     }
 
@@ -38,15 +38,14 @@ public class EditStatusAdapter extends RecyclerView.Adapter<EditStatusAdapter.Ed
 
     @Override
     public void onBindViewHolder(EditStatusViewHolder holder, int position) {
-        holder.save_request_date.setText(editStatusDaos.get(position).getRqDate());
-        holder.save_request_site.setText(editStatusDaos.get(position).getRqSubject());
-        holder.save_request_system.setText(editStatusDaos.get(position).getSysName());
+        holder.save_request_date.setText(editAndSaveStatusDaos.get(position).getRqDate());
+        holder.save_request_site.setText(editAndSaveStatusDaos.get(position).getRqSubject());
+        holder.save_request_system.setText(editAndSaveStatusDaos.get(position).getSysName());
     }
-
 
     @Override
     public int getItemCount() {
-        return editStatusDaos.size();
+        return editAndSaveStatusDaos.size();
     }
 
     public class EditStatusViewHolder extends RecyclerView.ViewHolder {
@@ -61,8 +60,6 @@ public class EditStatusAdapter extends RecyclerView.Adapter<EditStatusAdapter.Ed
             save_request_site = itemView.findViewById(R.id.txt_save_request_site);
             save_request_system = itemView.findViewById(R.id.txt_save_request_system);
             save_request_edit = itemView.findViewById(R.id.btn_save_request_edit);
-
-
         }
     }
 }

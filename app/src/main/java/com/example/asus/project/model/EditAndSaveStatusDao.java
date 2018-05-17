@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by PREDATOR on 12/5/2561.
  */
 
-public class EditStatusDao {
+public class EditAndSaveStatusDao {
     @SerializedName("rq_id")
     private String rqId;
 

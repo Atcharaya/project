@@ -1,6 +1,5 @@
 package com.example.asus.project.pages;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,12 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.asus.project.R;
-import com.example.asus.project.adapter.EditStatusAdapter;
-import com.example.asus.project.model.EditStatusDao;
+import com.example.asus.project.adapter.EditAndSaveStatusAdapter;
+import com.example.asus.project.model.EditAndSaveStatusDao;
 import com.example.asus.project.service.HttpManager;
 
 import java.util.List;
 
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -108,15 +108,15 @@ public class Edit_Status_Analysis extends Fragment {
 
     public void getSaveList() {
 
-        retrofit2.Call<List<EditStatusDao>> call = HttpManager.getInstance().getService().getSaveReportAnalysis();
-        call.enqueue(new Callback<List<EditStatusDao>>() {
+        Call<List<EditAndSaveStatusDao>> call = HttpManager.getInstance().getService().getSaveReportAnalysis();
+        call.enqueue(new Callback<List<EditAndSaveStatusDao>>() {
             @Override
-            public void onResponse(retrofit2.Call<List<EditStatusDao>> call, Response<List<EditStatusDao>> response) {
+            public void onResponse(retrofit2.Call<List<EditAndSaveStatusDao>> call, Response<List<EditAndSaveStatusDao>> response) {
                 if (response.isSuccessful()){
                     Log.d("service", "if :: " + response.message());
-                    List<EditStatusDao> res = response.body();
+                    List<EditAndSaveStatusDao> res = response.body();
                     Log.d("service", "if :: " + res.size());
-                    EditStatusAdapter adapter = new EditStatusAdapter(res, getActivity());
+                    EditAndSaveStatusAdapter adapter = new EditAndSaveStatusAdapter(res, getActivity());
                     recyclerView.setAdapter(adapter);
                 }else {
                     Log.d("service", "else :: " + response.errorBody());
@@ -124,7 +124,7 @@ public class Edit_Status_Analysis extends Fragment {
             }
 
             @Override
-            public void onFailure(retrofit2.Call<List<EditStatusDao>> call, Throwable t) {
+            public void onFailure(retrofit2.Call<List<EditAndSaveStatusDao>> call, Throwable t) {
                 Log.d("onFailure", "else :: " + t);
             }
         });
