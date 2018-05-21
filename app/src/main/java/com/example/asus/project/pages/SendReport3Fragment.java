@@ -153,12 +153,15 @@ public class SendReport3Fragment extends Fragment {
         if (param != null) {
             if (param.size() > 8) {
                 problem2.setText(param.get(8));
-                String[] temp = param.get(9).split("-");
-                ed.setText(temp[2] + "/" + temp[1] + "/" + temp[0]);
-                date = temp[0] + "-" + temp[1] + "-" + temp[2];
-                year =   Integer.parseInt(temp[0]);
-                month =   Integer.parseInt(temp[1])-1;
-                day =   Integer.parseInt(temp[2]);
+                if (param.get(9) != null) {
+                    String[] temp = param.get(9).split("-");
+                    ed.setText(temp[2] + "/" + temp[1] + "/" + temp[0]);
+                    date = temp[0] + "-" + temp[1] + "-" + temp[2];
+                    year = Integer.parseInt(temp[0]);
+                    month = Integer.parseInt(temp[1]) - 1;
+                    day = Integer.parseInt(temp[2]);
+                }
+
             }
         } else {
             ed.setText(dateFormat(day) + "/" + dateFormat(month + 1) + "/" + year);

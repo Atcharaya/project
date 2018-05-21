@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorbackground"
     tools:context="com.example.asus.project.pages.SendReportFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -19,78 +20,98 @@
         android:id="@+id/body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ECF0F1"
+        android:layout_margin="25dp"
+        android:background="#ffffff"
         android:orientation="vertical"
-        android:padding="11dp">
+        android:padding="15dp">
 
-
-        <TextView
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="โครงการ"
-            android:textSize="16dp"/>
-       <Spinner
-           android:id="@+id/Sch_Name"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content">
+            android:orientation="horizontal">
 
-       </Spinner>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="โครงการ"
+                android:textSize="16dp" />
 
-        <TextView
+            <Spinner
+                android:id="@+id/Sch_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </Spinner>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ระบบ"
-            android:textSize="16dp"/>
-        <Spinner
-            android:id="@+id/Sch_System"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></Spinner>
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ระบบ"
+                android:textSize="16dp" />
+
+            <Spinner
+                android:id="@+id/Sch_System"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Spinner>
+        </android.support.design.widget.TextInputLayout>
 
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ชื่อเรื่อง"
-            android:textSize="16dp"/>
-        <EditText
-            android:id="@+id/problem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="กรุณากรอกปัญหาที่พบ"
-            android:padding="16dp"
-            android:background="#ffffff"
-            android:layout_margin="5dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="รายละเอียด"
-            android:textSize="16dp"/>
-        <EditText
-            android:id="@+id/detail"
-            android:layout_width="match_parent"
-            android:layout_height="167dp"
-            android:layout_margin="5dp"
-            android:background="#ffffff"
-            android:ems="10"
-            android:hint="กรุณากรอกรายละเอียดของปัญหา"
-            android:inputType="textMultiLine"
-            android:padding="16dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ชื่อเรื่อง"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/problem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="กรุณากรอกปัญหาที่พบ"
+
+                android:inputType="text" />
+
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="รายละเอียด"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="กรุณากรอกรายละเอียดของปัญหา"
+                android:inputType="textMultiLine" />
 
 
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/next_button"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:padding="3dp"
-        android:text="@string/next"
-        android:textColor="#ffffff"
-        android:textSize="15sp" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/next"
+            android:textColor="#ffffff"
+            android:textSize="15sp" />
+    </LinearLayout>
 
 </RelativeLayout>
