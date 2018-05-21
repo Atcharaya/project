@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import com.example.asus.project.pages.Edit_Status_main;
 import com.example.asus.project.pages.FristFragment;
 import com.example.asus.project.pages.SaveReportMainFragment;
+import com.example.asus.project.pages.SelectEdit;
 import com.example.asus.project.pages.SendReportFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity
             fragment = new SendReportFragment();
             setTitle("ใบคำร้อง/ให้คำปรึกษา");
         } else if (id == R.id.nav_status) {
-            fragment = new Edit_Status_main();
+            fragment = new SelectEdit();
             setTitle("แก้ไขสถานะการดำเนินงาน");
         } else if (id == R.id.nav_save) {
             fragment = new SaveReportMainFragment();

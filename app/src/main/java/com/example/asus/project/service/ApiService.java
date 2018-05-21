@@ -5,6 +5,7 @@ import com.example.asus.project.model.ContactDao;
 import com.example.asus.project.model.EditAndSaveStatusDao;
 import com.example.asus.project.model.LevelDao;
 import com.example.asus.project.model.ProjectDao;
+import com.example.asus.project.model.SiteDao;
 import com.example.asus.project.model.Success;
 import com.example.asus.project.model.SysDao;
 import com.example.asus.project.model.SystemDao;
@@ -72,4 +73,9 @@ public interface ApiService {
                          @Field("rq_name") String rq_name,
                          @Field("rq_team_id") String rq_team_id,
                          @Field("rq_date") String rq_date);
+
+    @GET("getSelectSite")
+    Call<List<SiteDao>> getSelectSite();
+
+
 }
