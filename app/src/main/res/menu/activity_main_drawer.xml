@@ -6,27 +6,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_main"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/main"
             android:title="หน้าหลัก" />
         <item
             android:id="@+id/nav_track"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/follow"
             android:title="ติดตามใบคำร้อง" />
         <item
             android:id="@+id/nav_report"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/request"
             android:title="ใบคำร้อง/ให้คำปรึกษา" />
         <item
             android:id="@+id/nav_status"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/modify"
             android:title="แก้ไขสถานะการดำเนินงาน" />
         <item
             android:id="@+id/nav_save"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/save"
             android:title="บันทึกผลการแจ้งคำร้องของผู้ใช้" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_menu_send"
+            android:icon="@drawable/logout"
             android:title="ออกจากระบบ" />
     </group>
 

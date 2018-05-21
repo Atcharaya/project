@@ -25,7 +25,7 @@ public class HttpManager {
     private HttpManager() {
         OkHttpClient okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.80.39.17/TSP58/nursing/index.php/hdks/android/Service/")
+                .baseUrl("http://10.80.39.17/TSP58/nursing/index.php/hdks/android/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)
                 .build();

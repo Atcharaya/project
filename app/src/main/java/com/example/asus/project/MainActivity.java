@@ -1,16 +1,11 @@
 package com.example.asus.project;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
-import android.text.Html;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,13 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.example.asus.project.pages.Edit_Status_main;
-import com.example.asus.project.pages.FristFragment;
 import com.example.asus.project.pages.SaveReportMainFragment;
-import com.example.asus.project.pages.SelectEdit;
 import com.example.asus.project.pages.SendReportFragment;
-
-import static com.github.mikephil.charting.charts.Chart.LOG_TAG;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -39,16 +29,14 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });*/
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -58,8 +46,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        changePage(new FristFragment());
     }
 
     @Override
@@ -68,25 +54,7 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-//            super.onBackPressed();
-            AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
-            alertDlg.setMessage("คุณต้องการปิดแอพนี้หรือไม่");
-            alertDlg.setCancelable(false); // We avoid that the dialong can be cancelled, forcing the user to choose one of the options
-            alertDlg.setPositiveButton(Html.fromHtml("<font color='#000000'>ใช่</font>"), new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Log.e(LOG_TAG, "ใช่");
-                            finish();
-                        }
-                    }
-            );
-            alertDlg.setNegativeButton(Html.fromHtml("<font color='#000000'>ไม่</font>"), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    // We do nothing
-                    Log.e(LOG_TAG, "ไม่");
-                }
-            });
-            alertDlg.create().show();
+            super.onBackPressed();
         }
     }
 
@@ -120,8 +88,6 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = new Fragment();
 
         if (id == R.id.nav_main) {
-            fragment = new FristFragment();
-            setTitle("หน้าหลัก");
             // Handle the camera action
         } else if (id == R.id.nav_track) {
 
@@ -129,15 +95,12 @@ public class MainActivity extends AppCompatActivity
             fragment = new SendReportFragment();
             setTitle("ใบคำร้อง/ให้คำปรึกษา");
         } else if (id == R.id.nav_status) {
-            fragment = new SelectEdit();
-            setTitle("แก้ไขสถานะการดำเนินงาน");
+
         } else if (id == R.id.nav_save) {
             fragment = new SaveReportMainFragment();
-            setTitle("บันทึกผลใบคำร้อง");
+            setTitle("บันทึกผลการแจ้งคำร้องของผู้ใช้");
         } else if (id == R.id.nav_logout) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-            finish();
+
         }
 
         changePage(fragment);
