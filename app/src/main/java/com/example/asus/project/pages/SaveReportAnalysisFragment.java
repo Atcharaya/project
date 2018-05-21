@@ -110,6 +110,7 @@ public class SaveReportAnalysisFragment extends Fragment {
             @Override
             public void onResponse(Call<List<EditAndSaveStatusDao>> call, Response<List<EditAndSaveStatusDao>> response) {
                 if (response.isSuccessful()){
+
                     Log.d("service", "if :: " + response.message());
                     List<EditAndSaveStatusDao> res = response.body();
                     Log.d("service", "if :: " + res.size());

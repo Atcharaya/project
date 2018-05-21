@@ -2,6 +2,7 @@ package com.example.asus.project.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.asus.project.MainActivity;
 import com.example.asus.project.R;
 import com.example.asus.project.model.EditAndSaveStatusDao;
+import com.example.asus.project.pages.Edit_Status_main;
+import com.example.asus.project.pages.SaveReportContent;
 
 import java.util.List;
 
@@ -20,6 +24,8 @@ import java.util.List;
 
 public class EditAndSaveStatusAdapter extends RecyclerView.Adapter<EditAndSaveStatusAdapter.EditStatusViewHolder>{
     private List<EditAndSaveStatusDao> editAndSaveStatusDaos;
+
+
     private Context mContext;
     public EditAndSaveStatusAdapter(List<EditAndSaveStatusDao> editAndSaveStatusDaos, Context mContext) {
         this.editAndSaveStatusDaos = editAndSaveStatusDaos;
@@ -37,10 +43,19 @@ public class EditAndSaveStatusAdapter extends RecyclerView.Adapter<EditAndSaveSt
     }
 
     @Override
-    public void onBindViewHolder(EditStatusViewHolder holder, int position) {
+    public void onBindViewHolder(EditStatusViewHolder holder, final int position) {
         holder.save_request_date.setText(editAndSaveStatusDaos.get(position).getRqDate());
         holder.save_request_site.setText(editAndSaveStatusDaos.get(position).getRqSubject());
         holder.save_request_system.setText(editAndSaveStatusDaos.get(position).getSysName());
+        holder.save_request_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new SaveReportContent().newInstance(editAndSaveStatusDaos.get(position).getRqId());
+
+                ((MainActivity) mContext).changePage(fragment);
+            }
+        });
+
     }
 
     @Override
