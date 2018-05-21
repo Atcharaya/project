@@ -1,5 +1,6 @@
 package com.example.asus.project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,7 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.asus.project.pages.MainFragment;
 import com.example.asus.project.pages.SaveReportMainFragment;
+import com.example.asus.project.pages.SelectEdit;
 import com.example.asus.project.pages.SendReportFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -88,6 +91,8 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = new Fragment();
 
         if (id == R.id.nav_main) {
+            fragment = new MainFragment();
+            setTitle("หน้าหลัก");
             // Handle the camera action
         } else if (id == R.id.nav_track) {
 
@@ -95,12 +100,15 @@ public class MainActivity extends AppCompatActivity
             fragment = new SendReportFragment();
             setTitle("ใบคำร้อง/ให้คำปรึกษา");
         } else if (id == R.id.nav_status) {
-
+            fragment = new SelectEdit();
+            setTitle("แก้ไขสถานะการดำเนินงาน");
         } else if (id == R.id.nav_save) {
             fragment = new SaveReportMainFragment();
-            setTitle("บันทึกผลการแจ้งคำร้องของผู้ใช้");
+            setTitle("บันทึกผลใบคำร้อง");
         } else if (id == R.id.nav_logout) {
-
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         changePage(fragment);
