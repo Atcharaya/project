@@ -6,4 +6,6 @@
     <color name="colorSubmit">#45bf63</color>
     <color name="colorAccent">#ffffff</color>
     <color name="colorbackground">#f1ecec</color>
+    <color name="white">#ffffff</color>
+
 </resources>
