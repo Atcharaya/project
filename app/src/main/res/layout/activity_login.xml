@@ -26,7 +26,7 @@
             <ImageView
                 android:layout_width="300dp"
                 android:layout_height="150dp"
-                android:src="@drawable/icon_login" />
+                android:src="@drawable/tsp_logo" />
 
             <EditText
                 android:id="@+id/userName"
