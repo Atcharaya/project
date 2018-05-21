@@ -4,9 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\Windows10\AndroidStudioProjects\project\app\app.iml" filepath="C:\Users\Windows10\AndroidStudioProjects\project\app\app.iml" />
-      <module fileurl="file://C:\Users\ASUS\AndroidStudioProjects\project\app\app.iml" filepath="C:\Users\ASUS\AndroidStudioProjects\project\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/project.iml" filepath="$PROJECT_DIR$/project.iml" />
-      <module fileurl="file://C:\Users\ASUS\AndroidStudioProjects\project\project.iml" filepath="C:\Users\ASUS\AndroidStudioProjects\project\project.iml" />
       <module fileurl="file://C:\Users\Windows10\AndroidStudioProjects\project\project.iml" filepath="C:\Users\Windows10\AndroidStudioProjects\project\project.iml" />
     </modules>
   </component>
