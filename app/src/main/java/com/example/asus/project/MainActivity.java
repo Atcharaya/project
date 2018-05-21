@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_main) {
             fragment = new FristFragment();
-            setTitle("fristpage");
+            setTitle("หน้าหลัก");
             // Handle the camera action
         } else if (id == R.id.nav_track) {
 
