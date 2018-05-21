@@ -7,6 +7,7 @@ import com.example.asus.project.model.HomeDao;
 import com.example.asus.project.model.LevelDao;
 import com.example.asus.project.model.ProjectDao;
 import com.example.asus.project.model.SiteDao;
+import com.example.asus.project.model.SiteEditDao;
 import com.example.asus.project.model.Success;
 import com.example.asus.project.model.SysDao;
 import com.example.asus.project.model.SystemDao;
@@ -14,7 +15,6 @@ import com.example.asus.project.model.SystemDao;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -81,4 +81,13 @@ public interface ApiService {
 
     @GET("Service_home/get_graph")
     Call<HomeDao> getHome();
+
+    @FormUrlEncoded
+    @POST("Service/getSaveReportById")
+    Call<List<SiteEditDao>> getSaveReportById(@Field("status_id") String status_id);
+
+    @FormUrlEncoded
+    @POST("Service/updateStatus")
+    Call<List<Object>>updateStatus(@Field("status_id")String status_id);
+
 }

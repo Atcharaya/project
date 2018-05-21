@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.asus.project.pages.Edit_Status_main;
 import com.example.asus.project.pages.MainFragment;
 import com.example.asus.project.pages.SaveReportMainFragment;
 import com.example.asus.project.pages.SelectEdit;
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity
             fragment = new SendReportFragment();
             setTitle("ใบคำร้อง/ให้คำปรึกษา");
         } else if (id == R.id.nav_status) {
-            fragment = new SelectEdit();
+            fragment = new Edit_Status_main();
             setTitle("แก้ไขสถานะการดำเนินงาน");
         } else if (id == R.id.nav_save) {
             fragment = new SaveReportMainFragment();
@@ -126,4 +127,6 @@ public class MainActivity extends AppCompatActivity
         transaction.replace(R.id.FragmentDetail, fragment);
         transaction.commit();
     }
+
+
 }

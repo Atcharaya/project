@@ -10,13 +10,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.asus.project.MainActivity;
 import com.example.asus.project.R;
 import com.example.asus.project.adapter.EditAndSaveStatusAdapter;
+import com.example.asus.project.adapter.SiteEditAdapter;
 import com.example.asus.project.model.EditAndSaveStatusDao;
+import com.example.asus.project.model.SiteEditDao;
 import com.example.asus.project.service.HttpManager;
 
 import java.util.List;
 
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
@@ -32,13 +36,12 @@ public class Edit_Status_Quest extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     RecyclerView recyclerView;
 
-    private Edit_Status_Edit.OnFragmentInteractionListener mListener;
+    private Edit_Status_Quest.OnFragmentInteractionListener mListener;
 
     public Edit_Status_Quest() {
         // Required empty public constructor
@@ -49,12 +52,11 @@ public class Edit_Status_Quest extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment Edit_Status_Edit.
      */
     // TODO: Rename and change types and number of parameters
-    public static Edit_Status_Edit newInstance(String param1, String param2) {
-        Edit_Status_Edit fragment = new Edit_Status_Edit();
+    public static Edit_Status_Quest newInstance(String param1) {
+        Edit_Status_Quest fragment = new Edit_Status_Quest();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
@@ -106,15 +108,15 @@ public class Edit_Status_Quest extends Fragment {
     }
 
     public void getSaveList() {
-        retrofit2.Call<List<EditAndSaveStatusDao>> call = HttpManager.getInstance().getService().getSaveReportQuest();
-        call.enqueue(new Callback<List<EditAndSaveStatusDao>>() {
+        Call<List<SiteEditDao>> call = HttpManager.getInstance().getService().getSaveReportById("1");
+        call.enqueue(new Callback<List<SiteEditDao>>() {
             @Override
-            public void onResponse(retrofit2.Call<List<EditAndSaveStatusDao>> call, Response<List<EditAndSaveStatusDao>> response) {
+            public void onResponse(retrofit2.Call<List<SiteEditDao>> call, Response<List<SiteEditDao>> response) {
                 if (response.isSuccessful()){
                     Log.d("service", "if :: " + response.message());
-                    List<EditAndSaveStatusDao> res = response.body();
+                    List<SiteEditDao> res = response.body();
                     Log.d("service", "if :: " + res.size());
-                    EditAndSaveStatusAdapter adapter = new EditAndSaveStatusAdapter(res, getActivity());
+                    SiteEditAdapter adapter = new SiteEditAdapter(res, getActivity());
                     recyclerView.setAdapter(adapter);
                 }else {
                     Log.d("service", "else :: " + response.errorBody());
@@ -122,7 +124,7 @@ public class Edit_Status_Quest extends Fragment {
             }
 
             @Override
-            public void onFailure(retrofit2.Call<List<EditAndSaveStatusDao>> call, Throwable t) {
+            public void onFailure(retrofit2.Call<List<SiteEditDao>> call, Throwable t) {
                 Log.d("onFailure", "else :: " + t);
             }
         });
