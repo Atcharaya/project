@@ -1,6 +1,7 @@
 package com.example.asus.project.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.asus.project.MainActivity;
 import com.example.asus.project.R;
 import com.example.asus.project.model.SiteEditDao;
+import com.example.asus.project.pages.Edit_Status_Change;
 import com.example.asus.project.pages.Edit_Status_Rq;
 import com.example.asus.project.pages.Edit_Status_main;
 
@@ -47,8 +50,7 @@ public class SiteEditAdapter extends RecyclerView.Adapter<SiteEditAdapter.Site_E
         holder.btn_site_edit_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new Edit_Status_Rq();
-                ((MainActivity) mContext).changePage(fragment);
+                mContext.startActivity(new Intent(mContext, Edit_Status_Change.class));
             }
         });
     }
