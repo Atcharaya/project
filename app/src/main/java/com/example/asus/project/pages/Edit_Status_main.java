@@ -12,10 +12,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.asus.project.MainActivity;
 import com.example.asus.project.R;
 
 /**
@@ -71,7 +73,7 @@ public class Edit_Status_main extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_save_report_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit__status_main, container, false);
 
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -95,7 +97,7 @@ public class Edit_Status_main extends Fragment {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
-
+        Log.d("param", "onCreateView: " + mParam1);
         return view;
     }
 
@@ -147,24 +149,25 @@ public class Edit_Status_main extends Fragment {
 
         @Override
         public Fragment getItem(int position) {
+            Log.d("param", "getItem: " + mParam1);
             switch (position) {
                 case 0:
-                    SaveReportQuestFragment tabQuest = new SaveReportQuestFragment();
+                    Edit_Status_Quest tabQuest = new Edit_Status_Quest().newInstance(mParam1);
                     return tabQuest;
                 case 1:
-                    SaveReportAnalysisFragment tabAnalysis = new SaveReportAnalysisFragment();
+                    Edit_Status_Analysis tabAnalysis = new Edit_Status_Analysis().newInstance(mParam1);
                     return tabAnalysis;
                 case 2:
-                    SaveReportEditFragment tabEdit = new SaveReportEditFragment();
+                    Edit_Status_Edit tabEdit = new Edit_Status_Edit().newInstance(mParam1);
                     return tabEdit;
                 case 3:
-                    SaveReportTestFragment tabTest = new SaveReportTestFragment();
+                    Edit_Status_Report tabTest = new Edit_Status_Report().newInstance(mParam1);
                     return tabTest;
                 case 4:
-                    SaveReportReportFragment tabReport = new SaveReportReportFragment();
+                    Edit_Status_Test tabReport = new Edit_Status_Test().newInstance(mParam1);
                     return tabReport;
                 case 5:
-                    SaveReportDoneFragment tabDone = new SaveReportDoneFragment();
+                    Edit_Status_Done tabDone = new Edit_Status_Done().newInstance(mParam1);
                     return tabDone;
                 default:
                     return null;
