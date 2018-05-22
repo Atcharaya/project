@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.example.asus.project.model.EditAndSaveStatusDao;
 import com.example.asus.project.model.SiteDao;
 import com.example.asus.project.pages.Edit_Status_main;
 import com.example.asus.project.pages.SelectEdit;
+import com.example.asus.project.pages.SelectRqFragment;
+import com.example.asus.project.pages.TrackRqFragment;
 
 
 import java.util.List;
@@ -40,7 +43,7 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.SelectEditView
     @Override
     public SelectEditViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.from(parent.getContext()).inflate(R.layout.select_card_view, parent, false);
+        View view = inflater.from(parent.getContext()).inflate(R.layout.card_college, parent, false);
         SelectEditViewHolder selectEditViewHolder = new SelectEditViewHolder(view);
         return selectEditViewHolder;
     }
@@ -49,11 +52,10 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.SelectEditView
     public void onBindViewHolder(SelectEditViewHolder holder, final int position) {
         holder.name.setText(siteDao.get(position).getSite_name());
 
-        holder.btn_select_site.setOnClickListener(new View.OnClickListener() {
+        holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fragment = new Edit_Status_main().newInstance(siteDao.get(position).getSite_id());
-
+                Fragment fragment = new SelectRqFragment();
                 ((MainActivity) mContext).changePage(fragment);
             }
         });
@@ -68,12 +70,12 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.SelectEditView
 
     public class SelectEditViewHolder extends RecyclerView.ViewHolder {
         TextView name;
-        Button btn_select_site;
+        CardView cvItem;
 
         public SelectEditViewHolder(View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.txt_site_name);
-            btn_select_site = itemView.findViewById(R.id.btn_select_site);
+            name = itemView.findViewById(R.id.txt_site_name2);
+            cvItem = itemView.findViewById(R.id.cvItem);
         }
     }
 }

@@ -6,6 +6,7 @@ import com.example.asus.project.model.EditAndSaveStatusDao;
 import com.example.asus.project.model.HomeDao;
 import com.example.asus.project.model.LevelDao;
 import com.example.asus.project.model.ProjectDao;
+import com.example.asus.project.model.ReqDao;
 import com.example.asus.project.model.SiteDao;
 import com.example.asus.project.model.SiteEditDao;
 import com.example.asus.project.model.Success;
@@ -78,6 +79,11 @@ public interface ApiService {
 
     @GET("Service/getSelectSite")
     Call<List<SiteDao>> getSelectSite();
+
+    @GET("Service/getReqAll")
+    Call<List<ReqDao>> getReqAll();
+
+
 
     @GET("Service_home/get_graph")
     Call<HomeDao> getHome();
