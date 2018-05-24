@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity
             setTitle("หน้าหลัก");
             // Handle the camera action
         } else if (id == R.id.nav_track) {
-            fragment = new TrackRqFragment();
+
             setTitle("ติดตามคำร้อง");
         } else if (id == R.id.nav_report) {
             fragment = new SendReportFragment();
