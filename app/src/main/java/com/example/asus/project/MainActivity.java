@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_track) {
             fragment = new TrackRqFragment();
             setTitle("ติดตามคำร้อง");
-            //
         } else if (id == R.id.nav_report) {
             fragment = new SendReportFragment();
             setTitle("ใบคำร้อง/ให้คำปรึกษา");
