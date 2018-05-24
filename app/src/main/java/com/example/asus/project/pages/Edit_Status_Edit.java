@@ -69,6 +69,9 @@ public class Edit_Status_Edit extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
+            //mmAdapter = new Adapter(msgList);
+            //mrecyclerView.setAdapter(mmAdapter);
+
         }
     }
 

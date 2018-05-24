@@ -88,6 +88,12 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("Service/updateStatus")
-    Call<List<Object>>updateStatus(@Field("status_id")String status_id);
+    Call<List<Object>> updateStatus(@Field("status_id")String status_id);
+
+    @FormUrlEncoded
+    @POST("Service/sch_change")
+    Call<Success> sch_change(@Field("rq_id") String rq_id,
+                           @Field("stt_id") int stt_id
+    );
 
 }

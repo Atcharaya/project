@@ -50,7 +50,9 @@ public class SiteEditAdapter extends RecyclerView.Adapter<SiteEditAdapter.Site_E
         holder.btn_site_edit_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mContext.startActivity(new Intent(mContext, Edit_Status_Change.class));
+                Intent intent = new Intent(mContext, Edit_Status_Change.class);
+                intent.putExtra("rq_id",site_edit_daos.get(position).getRq_id());
+                mContext.startActivity(intent);
             }
         });
     }

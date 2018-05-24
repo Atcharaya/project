@@ -30,6 +30,7 @@
                 android:id="@+id/radio_analysis"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
                 android:textSize="16dp"
                 android:text="วิเคราะห์ผลกระทบ/ออกแบบ" />
 
@@ -37,6 +38,7 @@
                 android:id="@+id/radio_edit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
                 android:textSize="16dp"
                 android:text="ดำเนินการพัฒนา/ปรับแก้ไข" />
 
@@ -44,6 +46,7 @@
                 android:id="@+id/radio_test"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
                 android:textSize="16dp"
                 android:text="ทดสอบความถูกต้อง" />
 
@@ -51,6 +54,7 @@
                 android:id="@+id/radio_report"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
                 android:textSize="16dp"
                 android:text="รายงานผล" />
 
@@ -58,6 +62,7 @@
                 android:id="@+id/radio_done"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="6dp"
                 android:textSize="16dp"
                 android:text="สำเร็จ" />
         </RadioGroup>
@@ -70,17 +75,17 @@
         android:gravity="center|bottom"
         android:orientation="vertical">
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_save_edit_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|left"
             android:layout_marginStart="60dp"
             android:layout_marginBottom="20dp"
-            android:background="#d7625e"
             android:text="ยกเลิก"
-            android:textColor="#ffffff"
-            android:textSize="20dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorprv"/>
 
     </LinearLayout>
 
@@ -90,17 +95,17 @@
         android:gravity="center|bottom"
         android:orientation="vertical">
 
-        <Button
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_save_edit_rq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|right"
             android:layout_marginEnd="60dp"
             android:layout_marginBottom="20dp"
-            android:background="#5ed76c"
             android:text="บันทึก"
-            android:textColor="#ffffff"
-            android:textSize="20dp" />
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorSubmit"/>
 
     </LinearLayout>
 
