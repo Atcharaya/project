@@ -22,6 +22,7 @@ import com.example.asus.project.pages.MainFragment;
 import com.example.asus.project.pages.SaveReportMainFragment;
 import com.example.asus.project.pages.SelectEdit;
 import com.example.asus.project.pages.SendReportFragment;
+import com.example.asus.project.pages.TrackRqFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -99,7 +100,9 @@ public class MainActivity extends AppCompatActivity
             setTitle("หน้าหลัก");
             // Handle the camera action
         } else if (id == R.id.nav_track) {
-
+            fragment = new TrackRqFragment();
+            setTitle("ติดตามคำร้อง");
+            //
         } else if (id == R.id.nav_report) {
             fragment = new SendReportFragment();
             setTitle("ใบคำร้อง/ให้คำปรึกษา");
