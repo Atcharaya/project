@@ -50,11 +50,14 @@ public class SiteAdapter extends RecyclerView.Adapter<SiteAdapter.SelectEditView
 
     @Override
     public void onBindViewHolder(SelectEditViewHolder holder, final int position) {
+        Integer siteId = null;
+
         holder.name.setText(siteDao.get(position).getSite_name());
 
         holder.cvItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Fragment fragment = new SelectRqFragment();
                 ((MainActivity) mContext).changePage(fragment);
             }
