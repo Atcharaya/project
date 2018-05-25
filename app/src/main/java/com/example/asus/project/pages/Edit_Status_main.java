@@ -161,11 +161,11 @@ public class Edit_Status_main extends Fragment {
                     Edit_Status_Edit tabEdit = new Edit_Status_Edit().newInstance(mParam1);
                     return tabEdit;
                 case 3:
-                    Edit_Status_Report tabTest = new Edit_Status_Report().newInstance(mParam1);
-                    return tabTest;
-                case 4:
                     Edit_Status_Test tabReport = new Edit_Status_Test().newInstance(mParam1);
                     return tabReport;
+                case 4:
+                  Edit_Status_Report tabTest = new Edit_Status_Report().newInstance(mParam1);
+                  return tabTest;
                 case 5:
                     Edit_Status_Done tabDone = new Edit_Status_Done().newInstance(mParam1);
                     return tabDone;
